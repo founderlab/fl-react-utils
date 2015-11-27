@@ -6,17 +6,17 @@ import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
 
-import createStore from '../../shared/create_store'
-import getRoutes from '../../shared/routes'
-import dispatchNeeds from '../../shared/lib/dispatch_needs'
+import dispatchNeeds from './middleware/dispatch_needs'
 
-export default function createRenderer(options) {
-  const scripts = options.scripts || []
+export default function createServerRenderer(options) {
+  const {createStore, getRoutes, scripts=[], config={}} = options
+  if (!createStore) throw new Error('[fl-react-utils] createServerRenderer: Missing createStore from options')
+  if (!getRoutes) throw new Error('[fl-react-utils] createServerRenderer: Missing getRoutes from options')
 
   return function app(req, res) {
 
     const server_state = {
-      config: options.config,
+      config,
       auth: req.user ? {email: req.user.get('email'), admin: req.user.get('admin')} : {},
     }
     const store = createStore(reduxReactRouter, getRoutes, createHistory, server_state)
