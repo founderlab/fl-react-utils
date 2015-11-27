@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
 
-import dispatchNeeds from './middleware/dispatch_needs'
+import dispatchNeeds from './dispatch_needs'
 
 export default function createServerRenderer(options) {
   const {createStore, getRoutes, scripts=[], config={}} = options
