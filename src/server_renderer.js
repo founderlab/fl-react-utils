@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
 
-import dispatchNeeds from './dispatch_needs'
+import fetchComponentData from './fetch_component_data'
 
 export default function createServerRenderer(options) {
   const {createStore, getRoutes, scripts=[], config={}} = options
@@ -29,7 +29,7 @@ export default function createServerRenderer(options) {
       if (redirect_location) return res.redirect(redirect_location.pathname + redirect_location.search)
       if (!router_state) return res.status(404).send('Not found')
 
-      dispatchNeeds({store, components: router_state.components}, (err) => {
+      fetchComponentData({store, components: router_state.components}, (err) => {
         if (err) {
           console.log(err)
           return res.status(500).send('Internal server error')

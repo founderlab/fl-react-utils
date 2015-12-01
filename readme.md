@@ -2,4 +2,5 @@
 
 Changes: 
 
+- 0.2.0: dispatchNeeds changed to fetchComponentData
 - 0.1.0: Yoinked things from fl-base-webapp

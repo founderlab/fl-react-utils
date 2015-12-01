@@ -1,6 +1,6 @@
 import createServerRenderer from './server_renderer'
 import patchRouteEntry from './patch_route_entry'
-import dispatchNeeds from './dispatch_needs'
-import dispatchNeedsMiddleware from './middleware/dispatch_needs'
+import fetchComponentData from './fetch_component_data'
+import fetchComponentDataMiddleware from './middleware/fetch_component_data'
 
-export {createServerRenderer, patchRouteEntry, dispatchNeeds, dispatchNeedsMiddleware}
+export {createServerRenderer, patchRouteEntry, fetchComponentData, fetchComponentDataMiddleware}
