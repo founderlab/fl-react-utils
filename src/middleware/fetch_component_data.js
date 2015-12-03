@@ -7,7 +7,7 @@ export default store => next => action => {
   const router = store.getState().router
   if (action.type === ROUTER_DID_CHANGE && router && !locsEqual(action.payload.location, router.location)) {
     const {components} = action.payload
-    fetchComponentData({store, components})
+    fetchComponentData({store, components, action})
   }
   next(action)
 }
