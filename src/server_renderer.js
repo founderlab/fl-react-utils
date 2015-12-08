@@ -5,6 +5,7 @@ import createHistory from 'history/lib/createMemoryHistory'
 import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
+import Html from './components/Html'
 
 import fetchComponentData from './fetch_component_data'
 
@@ -14,7 +15,7 @@ export default function createServerRenderer(options) {
   if (!getRoutes) throw new Error('[fl-react-utils] createServerRenderer: Missing getRoutes from options')
 
   return function app(req, res) {
-
+    webpack_isomorphic_tools.refresh();
     const server_state = {
       config,
       auth: req.user ? {email: req.user.get('email'), admin: req.user.get('admin')} : {},
@@ -44,32 +45,35 @@ export default function createServerRenderer(options) {
         // https://github.com/rackt/redux-router/issues/106
         router_state.location.query = req.query
 
-        const component_html = renderToString(
+        const component = (
           <Provider store={store} key="provider">
             <ReduxRouter />
           </Provider>
         )
 
-        const script_tags = scripts.map(script => `<script type="application/javascript" src="/public/${script}"></script>`).join('\n')
+        // const script_tags = scripts.map(script => `<script type="application/javascript" src="/public/${script}"></script>`).join('\n')
 
-        const HTML = `
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <title>FounderLab_replaceme></title>
-              <script type="application/javascript">
-                window.__INITIAL_STATE__ = ${JSON.stringify(initial_state)}
-              </script>
-            </head>
-            <body id="app">
-              <div id="react-view">${component_html}</div>
-              ${script_tags}
-            </body>
-          </html>
-        `
+        // const HTML = `
+        //   <!DOCTYPE html>
+        //   <html>
+        //     <head>
+        //       <meta charset="utf-8">
+        //       <title>FounderLab_replaceme></title>
+        //       <script type="application/javascript">
+        //         window.__INITIAL_STATE__ = ${JSON.stringify(initial_state)}
+        //       </script>
+        //     </head>
+        //     <body id="app">
+        //       <div id="react-view">${component_html}</div>
+        //       ${script_tags}
+        //     </body>
+        //   </html>
+        // `
 
-        res.type('html').send(HTML)
+        res.send('<!doctype html>\n' +
+          renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} store={store}/>))
+console.log('rendering', renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} store={store}/>))
+        // res.type('html').send(HTML)
       })
     }))
   }
