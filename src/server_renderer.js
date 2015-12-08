@@ -5,7 +5,6 @@ import createHistory from 'history/lib/createMemoryHistory'
 import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
-// import Html from './components/Html'
 
 import fetchComponentData from './fetch_component_data'
 
@@ -15,7 +14,6 @@ export default function createServerRenderer(options) {
   if (!getRoutes) throw new Error('[fl-react-utils] createServerRenderer: Missing getRoutes from options')
 
   return function app(req, res) {
-    // webpack_isomorphic_tools.refresh();
     const server_state = {
       config,
       auth: req.user ? {email: req.user.get('email'), admin: req.user.get('admin')} : {},
@@ -51,8 +49,7 @@ export default function createServerRenderer(options) {
           </Provider>
         )
 
-        const url = 'http://localhost:3001'
-        const script_tags = scripts.map(script => `<script type="application/javascript" src="${url}/public/${script}"></script>`).join('\n')
+        const script_tags = scripts.map(script => `<script type="application/javascript" src="${script}"></script>`).join('\n')
 
         const HTML = `
           <!DOCTYPE html>
@@ -72,9 +69,6 @@ export default function createServerRenderer(options) {
         `
         res.type('html').send(HTML)
 
-// console.log('rendering', renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} initial_state={initial_state}/>))
-        // res.send('<!doctype html>\n' +
-        //   renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} initial_state={initial_state}/>))
       })
     }))
   }
