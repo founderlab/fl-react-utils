@@ -70,9 +70,9 @@ export default function createServerRenderer(options) {
         //   </html>
         // `
 
+// console.log('rendering', renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} initial_state={initial_state}/>))
         res.send('<!doctype html>\n' +
-          renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} store={store}/>))
-console.log('rendering', renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} store={store}/>))
+          renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} initial_state={initial_state}/>))
         // res.type('html').send(HTML)
       })
     }))

@@ -16,13 +16,14 @@ export default class Html extends Component {
   static propTypes = {
     assets: PropTypes.object,
     component: PropTypes.node,
-    store: PropTypes.object
+    initial_state: PropTypes.object
   }
 
   render() {
-    const {assets, component, store} = this.props;
+    const {assets, component, initial_state} = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
-
+console.log('assets.styles', assets.styles)
+console.log('assets', assets)
     return (
       <html lang="en-us">
         <head>
@@ -43,8 +44,8 @@ export default class Html extends Component {
           { /* Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../theme/bootstrap.config.js') + require('../containers/App/App.scss')._style}}/> : null */ }
         </head>
         <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
-          <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${serialize(store.getState())};`}} charSet="UTF-8"/>
+          <div id="react-view" dangerouslySetInnerHTML={{__html: content}}/>
+          <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${serialize(initial_state)};`}} charSet="UTF-8"/>
           <script src={assets.javascript.main} charSet="UTF-8"/>
         </body>
       </html>
