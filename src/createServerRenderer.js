@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
 
-import fetchComponentData from './fetch_component_data'
+import fetchComponentData from './fetchComponentData'
 
 export default function createServerRenderer(options) {
   const {createStore, getRoutes, scripts=[], config={}} = options
