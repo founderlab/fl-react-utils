@@ -4,9 +4,11 @@ import {ButtonToolbar, ButtonGroup, Button} from 'react-bootstrap'
 
 export default class Pagination extends Component {
   static propTypes = {
-    location: PropTypes.object,
-    // pagination: PropTypes.object,
-    pushState: PropTypes.func,
+    location: PropTypes.object.isRequired,
+    items_per_page: PropTypes.number.isRequired,
+    current_page: PropTypes.number.isRequired,
+    total_items: PropTypes.number.isRequired,
+    pushState: PropTypes.func.isRequired,
   }
 
   handlePage = (page) => {
