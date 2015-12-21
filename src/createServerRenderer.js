@@ -16,7 +16,7 @@ export default function createServerRenderer(options) {
   return function app(req, res) {
     const server_state = {
       config,
-      auth: req.user ? {email: req.user.get('email'), admin: req.user.get('admin')} : {},
+      auth: req.user ? {user: _.omit(req.user.toJSON(), 'password')} : {},
     }
     const store = createStore(reduxReactRouter, getRoutes, createHistory, server_state)
 
