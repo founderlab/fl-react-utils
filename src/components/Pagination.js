@@ -22,7 +22,7 @@ export default class Pagination extends Component {
     const total_pages = Math.ceil(total_items / items_per_page)
     if (!total_pages) return null
 
-    const handlePageFn = (i) => () => this.handlePageFn(i)
+    const handlePageFn = (i) => () => this.handlePage(i)
 
     for (let i=1; i<=total_pages; i++) {
       const style = current_page === i ? 'primary' : 'default'
