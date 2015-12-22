@@ -22,7 +22,7 @@ export default function createPaginationReducer(action_type) {
     }
 
     if (action.page && (action.page !== state.current_page)) {
-      state = state.merge({visible: _.keys(action.by_id), current_page: action.page})
+      state = state.merge({visible: _.map(action.models, m => m.id), current_page: action.page})
     }
 
     return state
