@@ -1,9 +1,11 @@
+import _ from 'lodash'
+import {fromJS} from 'immutable'
 
-export default function createGroupedReducer(action_types, groupingKey) {
+export default function createGroupByReducer(action_types, groupingKey) {
   const grouped_default_state = fromJS({})
   const [load_action, delete_action] = action_types
 
-  return function grouped(_state=grouped_default_state, action={}) {
+  return function groupBy(_state=grouped_default_state, action={}) {
     let state = _state
 
     if (action.type === delete_action) {

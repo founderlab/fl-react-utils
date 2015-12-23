@@ -1,4 +1,4 @@
-import createGroupedReducer from './createGroupedReducer'
+import createGroupByReducer from './createGroupByReducer'
 import createPaginationReducer from './createPaginationReducer'
 import createServerRenderer from './createServerRenderer'
 import fetchComponentData from './fetchComponentData'
@@ -7,7 +7,7 @@ import patchRouteEntry from './patchRouteEntry'
 import Pagination from './components/Pagination'
 
 export {
-  createGroupedReducer,
+  createGroupByReducer,
   createPaginationReducer,
   createServerRenderer,
   fetchComponentData,
