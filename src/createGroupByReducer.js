@@ -8,7 +8,7 @@ export default function createGroupByReducer(action_types, groupingKey) {
   return function groupBy(_state=grouped_default_state, action={}) {
     let state = _state
 
-    if (action.type === delete_action) {
+    if (delete_action && action.type === delete_action) {
       const {id} = action.deleted_model
       const grouping_key = groupingKey(action.deleted_model)
       const current = state.get(grouping_key)
