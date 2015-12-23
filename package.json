@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "queue-async": "^1.0.7",
-    "lodash": "*"
+    "lodash": "*",
+    "immutable": "^3.7.4"
   },
   "peerDependencies": {
     "history": "1.13.x",
