@@ -19,7 +19,7 @@ app.get('*', createServerRenderer({
 
 Changes: 
 
-- 0.3.3: always_fetch option for serverRenderer: List components here that should have their fetchData method called regardless of the route
+- 0.3.3: 0
 - 0.3.2: createGroupByReducer added
 - 0.3.0: Naming scheme updated; pagination added
 - 0.2.0: dispatchNeeds changed to fetchComponentData
