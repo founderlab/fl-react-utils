@@ -15,9 +15,10 @@
     "test": "eval $(cat test/.env) mocha test/**/*.tests.js"
   },
   "dependencies": {
-    "queue-async": "^1.0.7",
+    "immutable": "^3.7.4",
     "lodash": "*",
-    "immutable": "^3.7.4"
+    "queue-async": "^1.0.7",
+    "reselect": "^2.0.2"
   },
   "peerDependencies": {
     "history": "1.13.x",
