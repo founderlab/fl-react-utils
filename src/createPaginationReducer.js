@@ -16,12 +16,12 @@ export default function createPaginationReducer(action_type) {
       return state.merge({total: +action.res})
     }
 
-    if (action.type === action_type + '_DEL_SUCCESS') {
+    else if (action.type === action_type + '_DEL_SUCCESS') {
       const visible = state.get('visible')
       return state.merge({visible: _.without(visible, action.deleted_id)})
     }
 
-    if (!_.isUndefined(action.page)) {
+    else if (!_.isUndefined(action.page)) {
       state = state.merge({visible: _.map(action.models, m => m.id), current_page: action.page})
     }
 
