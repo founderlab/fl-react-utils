@@ -21,11 +21,10 @@ export default function createPaginationReducer(action_type) {
       return state.merge({visible: _.without(visible, action.deleted_id)})
     }
 
-    if (action.page && (action.page !== state.current_page)) {
+    if (!_.isUndefined(action.page)) {
       state = state.merge({visible: _.map(action.models, m => m.id), current_page: action.page})
     }
 
     return state
   }
-
 }
