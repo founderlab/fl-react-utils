@@ -19,6 +19,7 @@ app.get('*', createServerRenderer({
 
 Changes: 
 
+- 0.3.5: Pagination links are real links
 - 0.3.4: added createPaginationSelector to auto create a `reselect` selector
 - 0.3.3: createServerRenderer takes an always_fetch parameter for components that should awlays have their fetchData method called
 - 0.3.2: createGroupByReducer added
