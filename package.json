@@ -1,6 +1,6 @@
 {
   "name": "fl-react-utils",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Boilerplate and helper functions for react/redux that can be shared amongst FounderLab apps",
   "main": "lib/index.js",
   "author": {
@@ -18,7 +18,6 @@
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
     "queue-async": "^1.0.7",
-    "lodash": "^4.0.0",
     "reselect": "^2.0.2"
   },
   "peerDependencies": {
