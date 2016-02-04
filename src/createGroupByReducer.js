@@ -19,6 +19,7 @@ export default function createGroupByReducer(action_types, groupingKey) {
       const by_group = _.groupBy(action.models, model => groupingKey(model))
 
       _.forEach(by_group, (models, grouping_key) => {
+        if (_.isNil(grouping_key)) return
         let group_state = state.get(grouping_key) || fromJS([])
         _.forEach(models, model => {
           if (!group_state.includes(model.id)) group_state = group_state.push(model.id)

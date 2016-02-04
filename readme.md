@@ -37,4 +37,3 @@ export default function fileReducer(state=default_state, action={}) {
   }
 }
 ```
-
