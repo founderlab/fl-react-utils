@@ -10,3 +10,31 @@ Changes:
 - 0.3.0: Naming scheme updated; pagination added
 - 0.2.0: dispatchNeeds changed to fetchComponentData
 - 0.1.0: Yoinked things from fl-base-webapp
+
+
+#####createGroupByReducer
+Use this to take an action parsed by responseParser and generate a list of model ids grouped by a given key
+
+e.g. here the by_lesson property of the state will be a list of file ids that share a lesson_id 
+```
+const byLesson = createGroupByReducer([TYPES.FILE_LOAD + '_SUCCESS'], file => file.lesson_id)
+
+...
+
+export default function fileReducer(state=default_state, action={}) {
+
+  switch (action.type) {
+    ...
+
+    case TYPES.FILE_LOAD + '_SUCCESS':
+      return = state.mergeDeep({
+        loading: false,
+        error: null,
+        by_lesson: byLesson(state.get('by_lesson'), action),
+      })
+
+    ...
+  }
+}
+```
+
