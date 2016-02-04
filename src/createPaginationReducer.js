@@ -17,14 +17,13 @@ export default function createPaginationReducer(action_type) {
     }
 
     else if (action.type === action_type + '_DEL_SUCCESS') {
-      const visible = state.get('visible')
+      const visible = state.get('visible').toJSON()
       state = state.merge({visible: _.without(visible, action.deleted_id)})
     }
 
     else if (action.type === action_type + '_LOAD_SUCCESS' && action.page) {
       state = state.merge({visible: action.ids, current_page: action.page})
     }
-
     return state
   }
 }

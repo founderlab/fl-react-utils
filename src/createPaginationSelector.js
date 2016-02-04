@@ -1,7 +1,14 @@
 import _ from 'lodash' // eslint-disable-line
 import {createSelector} from 'reselect'
 
-export default function createPaginationSelector(paginate_on, selectState) {
+function paginationState(state, paginate_on) {
+  if (_.isFunction(paginate_on)) return paginate_on(state)
+  return state[paginate_on]
+}
+
+const defaultSelect = () => {}
+
+export default function createPaginationSelector(paginate_on, selectState=defaultSelect) {
   return createSelector(
     state => state[paginate_on].get('loading'),
     state => state[paginate_on].get('by_id'),
