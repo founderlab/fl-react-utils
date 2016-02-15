@@ -5,6 +5,7 @@ import fetchComponentData from './fetchComponentData'
 import fetchComponentDataMiddleware from './middleware/fetchComponentData'
 import patchRouteEntry from './patchRouteEntry'
 import Pagination from './components/Pagination'
+import S3Image from './components/S3Image'
 
 export {
   createGroupByReducer,
@@ -14,4 +15,5 @@ export {
   fetchComponentDataMiddleware,
   patchRouteEntry,
   Pagination,
+  S3Image,
 }
