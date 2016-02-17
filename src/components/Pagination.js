@@ -53,7 +53,7 @@ export default class Pagination extends Component {
     }
 
     return (
-      <ButtonToolbar className="pagination">
+      <ButtonToolbar className="pagination-buttons">
         <ButtonGroup bsSize="small">
           {links}
         </ButtonGroup>
