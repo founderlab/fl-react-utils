@@ -24,6 +24,7 @@ export default function createPaginationReducer(action_type) {
     else if (action.type === action_type + '_LOAD_SUCCESS' && action.page) {
       state = state.merge({visible: action.ids, current_page: action.page})
     }
+
     return state
   }
 }

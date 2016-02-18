@@ -8,7 +8,7 @@ export default class Pagination extends Component {
     location: PropTypes.object.isRequired,
     items_per_page: PropTypes.number.isRequired,
     current_page: PropTypes.number.isRequired,
-    total_items: PropTypes.number.isRequired,
+    total_items: PropTypes.number,
     max_links: PropTypes.number,
   }
 
@@ -18,6 +18,7 @@ export default class Pagination extends Component {
 
   render() {
     const {location, items_per_page, current_page, total_items} = this.props
+    if (!total_items) return null
     const max_links = this.props.max_links - 1
     const links = []
     const total_pages = Math.ceil(total_items / items_per_page)
