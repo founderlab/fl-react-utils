@@ -17,8 +17,7 @@
   "dependencies": {
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
-    "queue-async": "^1.0.7",
-    "reselect": "^2.0.2"
+    "queue-async": "^1.0.7"
   },
   "devDependencies": {
     "history": "^1.17.0",
@@ -33,6 +32,8 @@
     "eslint": "^1.5.1",
     "eslint-config-founderlab": "^0.1.0",
     "eslint-plugin-react": "^3.4.2",
-    "expect": "^1.12.2"
+    "expect": "^1.12.2",
+    "reselect": "^2.0.2",
+    "react-dropzone-s3-uploader": "^0.3.1"
   }
 }
