@@ -2,6 +2,7 @@
 
 Changes: 
 
+- 0.4.2: Pass classNames to Pagination component
 - 0.4.0: Moved server renderer to fl-sever-utils
 - 0.3.5: Pagination links are real links
 - 0.3.4: added createPaginationSelector to auto create a `reselect` selector
