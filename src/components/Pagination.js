@@ -2,12 +2,14 @@ import _ from 'lodash' // eslint-disable-line
 import React, {Component, PropTypes} from 'react'
 import {ButtonToolbar, ButtonGroup, Button, Glyphicon} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import classNames from 'classnames'
 
 export default class Pagination extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     items_per_page: PropTypes.number.isRequired,
     current_page: PropTypes.number.isRequired,
+    className: PropTypes.string,
     total_items: PropTypes.number,
     max_links: PropTypes.number,
   }
@@ -54,7 +56,7 @@ export default class Pagination extends Component {
     }
 
     return (
-      <ButtonToolbar className="pagination-buttons">
+      <ButtonToolbar className={classNames(this.props.className, 'pagination-buttons')}>
         <ButtonGroup bsSize="small">
           {links}
         </ButtonGroup>
