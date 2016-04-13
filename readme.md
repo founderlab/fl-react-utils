@@ -2,6 +2,7 @@
 
 Changes: 
 
+- 0.5.0: Added Sidebar component
 - 0.4.2: Pass classNames to Pagination component
 - 0.4.0: Moved server renderer to fl-sever-utils
 - 0.3.5: Pagination links are real links
@@ -13,7 +14,8 @@ Changes:
 - 0.1.0: Yoinked things from fl-base-webapp
 
 
-#####createGroupByReducer
+createGroupByReducer
+--------------------
 Use this to take an action parsed by responseParser and generate a list of model ids grouped by a given key
 
 e.g. here the by_lesson property of the state will be a list of file ids that share a lesson_id 
@@ -35,6 +37,31 @@ export default function fileReducer(state=default_state, action={}) {
       })
 
     ...
+  }
+}
+```
+
+Sidebar
+-------
+Wrapper for react-sidebar with some useful defaults.
+
+```
+...
+import {Sidebar} from 'fl-react-utils'
+
+class SomeComponent extends React.Component {
+  render() {
+    const {model} = this.props
+
+    return (
+      <Sidebar
+        sidebar: <SidebarContent />,    // Required, component to be rendered inside the sidebar
+        change_key: model.id,           // Sidebar will close when this key changes (useful for closing on navigation)
+        disable_toggle: false,          // Hide the open/close toggle button when not in docket mode (< 768px)
+      >
+        <div>App content goes here</div>
+      </Sidebar>
+    )
   }
 }
 ```
