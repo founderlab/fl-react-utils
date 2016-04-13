@@ -19,7 +19,7 @@ createGroupByReducer
 Use this to take an action parsed by responseParser and generate a list of model ids grouped by a given key
 
 e.g. here the by_lesson property of the state will be a list of file ids that share a lesson_id 
-```
+```javascript
 const byLesson = createGroupByReducer([TYPES.FILE_LOAD + '_SUCCESS'], file => file.lesson_id)
 
 ...
@@ -45,7 +45,7 @@ Sidebar
 -------
 Wrapper for react-sidebar with some useful defaults.
 
-```
+```javascript
 ...
 import {Sidebar} from 'fl-react-utils'
 
