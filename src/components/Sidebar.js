@@ -61,7 +61,6 @@ export default class FLSidebar extends Component {
     })
 
     const disable_sidebar_toggle = this.props.disable_toggle || this.state.docked
-console.log(this.props.disable_toggle, this.state.docked)
     return (
       <Sidebar {...sidebar_props}>
         {!disable_sidebar_toggle && (
