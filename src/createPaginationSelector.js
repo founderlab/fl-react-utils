@@ -15,11 +15,11 @@ export default function createPaginationSelector(paginate_on, selectState=defaul
     state => state[paginate_on].get('pagination'),
     selectState,
     (loading, models, pagination, selected_state) => {
-      if (loading) return _.extend({}, selected_state, {loading: true})
+      const visible_items = []
+      if (loading) return _.extend({}, selected_state, {visible_items, total_items: 0, loading: true})
 
       const visible_ids = pagination.get('visible').toJSON()
       const total_items = +(pagination.get('total'))
-      const visible_items = []
 
       _.forEach(visible_ids, id => visible_items.push(models.get(id).toJSON()))
 
