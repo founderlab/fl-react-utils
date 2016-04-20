@@ -2,6 +2,7 @@
 
 Changes: 
 
+- 0.6.0: react-bootstrap version bump
 - 0.5.0: Added Sidebar component
 - 0.4.2: Pass classNames to Pagination component
 - 0.4.0: Moved server renderer to fl-sever-utils
