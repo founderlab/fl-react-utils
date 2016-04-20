@@ -1,6 +1,6 @@
 {
   "name": "fl-react-utils",
-  "version": "0.6.0",
+  "version": "0.5.1",
   "description": "Boilerplate and helper functions for react/redux that can be shared amongst FounderLab apps",
   "main": "lib/index.js",
   "author": {
@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "react-sidebar": "^2.1.1",
-    "react-bootstrap": "^0.29.0",
+    "react-bootstrap": "^0.28.0",
     "react-router-bootstrap": "^0.19.3"
   },
   "devDependencies": {
