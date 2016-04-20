@@ -7,7 +7,7 @@
     "name": "Gwilym Humphreys",
     "url": "https://github.com/gwilymhumphreys"
   },
-  "license": "",
+  "license": "MIT",
   "scripts": {
     "prepublish": "rm -rf ./lib && babel ./src --ignore '/node_modules/' --out-dir ./lib",
     "build": "rm -rf ./lib && babel ./src --ignore '/node_modules/' --out-dir ./lib",
