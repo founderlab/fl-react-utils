@@ -7,6 +7,7 @@ export default class FLSidebar extends Component {
 
   static propTypes = {
     change_key: PropTypes.string,
+    docked_width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     disable_toggle: PropTypes.bool,
     react_sidebar_props: PropTypes.object.isRequired,
     sidebar: PropTypes.node.isRequired,
@@ -17,6 +18,7 @@ export default class FLSidebar extends Component {
     react_sidebar_props: {
       sidebarClassName: 'sidebar',
     },
+    docked_width: 768,
   }
 
   constructor() {
@@ -25,8 +27,9 @@ export default class FLSidebar extends Component {
   }
 
   componentWillMount() {
+    console.log('mount props', this.props)
     if (typeof window === 'undefined') return
-    const mql = window.matchMedia(`(min-width: 768px)`)
+    const mql = window.matchMedia(`(min-width: ${this.props.docked_width}px)`)
     mql.addListener(this.handleMediaQueryChanged)
     this.setState({mql, docked: mql.matches})
   }
