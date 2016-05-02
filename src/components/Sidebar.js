@@ -27,7 +27,6 @@ export default class FLSidebar extends Component {
   }
 
   componentWillMount() {
-    console.log('mount props', this.props)
     if (typeof window === 'undefined') return
     const mql = window.matchMedia(`(min-width: ${this.props.docked_width}px)`)
     mql.addListener(this.handleMediaQueryChanged)
