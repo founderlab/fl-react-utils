@@ -2,6 +2,7 @@
 
 Changes: 
 
+- 0.5.4: Now an npm package!
 - 0.5.0: Added Sidebar component
 - 0.4.2: Pass classNames to Pagination component
 - 0.4.0: Moved server renderer to fl-sever-utils
