@@ -15,10 +15,11 @@
     "test": "eval $(cat test/.env) mocha test/**/*.tests.js"
   },
   "dependencies": {
+    "classnames": "^2.2.3",
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
     "queue-async": "^1.0.7",
-    "classnames": "^2.2.3"
+    "react-sidebar": "^2.1.1"
   },
   "// wouldBePeerDependencies": {
     "react": "*",
