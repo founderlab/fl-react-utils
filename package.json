@@ -20,7 +20,7 @@
     "queue-async": "^1.0.7",
     "classnames": "^2.2.3"
   },
-  "peerDependencies": {
+  "// wouldBePeerDependencies": {
     "react": "*",
     "react-sidebar": "*",
     "react-bootstrap": "*",
