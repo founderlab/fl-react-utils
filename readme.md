@@ -2,7 +2,7 @@
 
 Changes: 
 
-- 0.5.4: Now an npm package!
+- 0.6.0: Now an npm package; added requestLoggerMiddleware
 - 0.5.0: Added Sidebar component
 - 0.4.2: Pass classNames to Pagination component
 - 0.4.0: Moved server renderer to fl-sever-utils
@@ -66,3 +66,7 @@ class SomeComponent extends React.Component {
   }
 }
 ```
+
+requestLoggerMiddleware
+-----------------------
+Auto logs all requests to the console.
