@@ -3,7 +3,7 @@ import createPaginationReducer from './createPaginationReducer'
 import createPaginationSelector from './createPaginationSelector'
 import fetchComponentData from './fetchComponentData'
 import fetchComponentDataMiddleware from './middleware/fetchComponentData'
-import requestLoggerMiddleware from './middleware/requestLogger'
+import requestLoggerMiddleware, {createRequestLoggerMiddleware} from './middleware/requestLogger'
 import patchRouteEntry from './patchRouteEntry'
 import Pagination from './components/Pagination'
 import S3Image from './components/S3Image'
@@ -17,6 +17,7 @@ export {
   fetchComponentData,
   fetchComponentDataMiddleware,
   requestLoggerMiddleware,
+  createRequestLoggerMiddleware,
   patchRouteEntry,
   Pagination,
   S3Image,
