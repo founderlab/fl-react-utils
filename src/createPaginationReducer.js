@@ -1,28 +1,28 @@
 import _ from 'lodash' // eslint-disable-line
 import {fromJS} from 'immutable'
 
-export default function createPaginationReducer(action_type) {
+export default function createPaginationReducer(actionType) {
 
-  const default_state = fromJS({
+  const defaultState = fromJS({
     visible: [],
-    current_page: 1,
-    endless_page: 1,
+    currentPage: 1,
+    endlessPage: 1,
   })
 
-  return function pagination(_state=default_state, action={}) {
+  return function pagination(_state=defaultState, action={}) {
     let state = _state
 
-    if (action.type === action_type + '_COUNT_SUCCESS') {
+    if (action.type === actionType + '_COUNT_SUCCESS') {
       state = state.merge({total: +action.res})
     }
 
-    else if (action.type === action_type + '_DEL_SUCCESS') {
+    else if (action.type === actionType + '_DEL_SUCCESS') {
       const visible = state.get('visible').toJSON()
-      state = state.merge({visible: _.without(visible, action.deleted_model_id)})
+      state = state.merge({visible: _.without(visible, action.deletedId)})
     }
 
-    else if (action.type === action_type + '_LOAD_SUCCESS' && action.page) {
-      state = state.merge({visible: action.ids, current_page: action.page})
+    else if (action.type === actionType + '_LOAD_SUCCESS' && action.page) {
+      state = state.merge({visible: action.ids, currentPage: action.page})
     }
 
     return state

@@ -8,12 +8,12 @@ export default class S3Image extends Component {
   }
 
   static contextTypes = {
-    s3_url: PropTypes.string.isRequired,
+    s3Url: PropTypes.string.isRequired,
   }
 
   render() {
     const {filename} = this.props
-    const url = `${this.context.s3_url}/${filename}`
+    const url = `${this.context.s3Url}/${filename}`
 
     return (
       <img src={url} {...this.props} />

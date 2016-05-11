@@ -1,7 +1,7 @@
 import {ROUTER_DID_CHANGE} from 'redux-router/lib/constants'
 import fetchComponentData from '../fetchComponentData'
 
-const locsEqual = (loc_a, loc_b) => (loc_a.pathname === loc_b.pathname) && (loc_a.search === loc_b.search)
+const locsEqual = (locA, locB) => (locA.pathname === locB.pathname) && (locA.search === locB.search)
 
 export default store => next => action => {
   const router = store.getState().router

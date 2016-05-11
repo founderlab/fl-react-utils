@@ -7,28 +7,28 @@ import classNames from 'classnames'
 export default class Pagination extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
-    items_per_page: PropTypes.number.isRequired,
-    current_page: PropTypes.number.isRequired,
+    itemsPerPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
     className: PropTypes.string,
-    total_items: PropTypes.number,
-    max_links: PropTypes.number,
+    totalItems: PropTypes.number,
+    maxLinks: PropTypes.number,
   }
 
   static defaultProps = {
-    max_links: 4,
+    maxLinks: 4,
   }
 
   render() {
-    const {location, items_per_page, current_page, total_items} = this.props
-    if (!total_items) return null
-    const max_links = this.props.max_links - 1
+    const {location, itemsPerPage, currentPage, totalItems} = this.props
+    if (!totalItems) return null
+    const maxLinks = this.props.maxLinks - 1
     const links = []
-    const total_pages = Math.ceil(total_items / items_per_page)
-    if (!total_pages) return null
+    const totalPages = Math.ceil(totalItems / itemsPerPage)
+    if (!totalPages) return null
 
-    let start = Math.min(Math.floor(current_page - max_links/2), total_pages-max_links)
+    let start = Math.min(Math.floor(currentPage - maxLinks/2), totalPages-maxLinks)
     if (start < 1) start = 1
-    const end = Math.min(start+max_links, total_pages)
+    const end = Math.min(start+maxLinks, totalPages)
 
     if (start > 1) {
       links.push(
@@ -42,14 +42,14 @@ export default class Pagination extends Component {
     for (let i=start; i<=end; i++) {
       links.push(
         <LinkContainer key={i} to={location.pathname} query={_.extend({}, location.query, {page: i})}>
-          <Button bsStyle={current_page === i ? 'primary' : 'default'}>{i}</Button>
+          <Button bsStyle={currentPage === i ? 'primary' : 'default'}>{i}</Button>
         </LinkContainer>
       )
     }
 
-    if (end < total_pages) {
+    if (end < totalPages) {
       links.push(
-        <LinkContainer key="next" to={location.pathname} query={_.extend({}, location.query, {page: current_page+1})}>
+        <LinkContainer key="next" to={location.pathname} query={_.extend({}, location.query, {page: currentPage+1})}>
           <Button bsStyle="default"><Glyphicon glyph="chevron-right" /></Button>
         </LinkContainer>
       )

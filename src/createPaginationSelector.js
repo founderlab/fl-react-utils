@@ -1,29 +1,29 @@
 import _ from 'lodash' // eslint-disable-line
 import {createSelector} from 'reselect'
 
-function paginationState(state, paginate_on) {
-  if (_.isFunction(paginate_on)) return paginate_on(state)
-  return state[paginate_on]
+function paginationState(state, paginateOn) {
+  if (_.isFunction(paginateOn)) return paginateOn(state)
+  return state[paginateOn]
 }
 
 const defaultSelect = () => {}
 
-export default function createPaginationSelector(paginate_on, selectState=defaultSelect) {
+export default function createPaginationSelector(paginateOn, selectState=defaultSelect) {
   return createSelector(
-    state => state[paginate_on].get('loading'),
-    state => state[paginate_on].get('by_id'),
-    state => state[paginate_on].get('pagination'),
+    state => state[paginateOn].get('loading'),
+    state => state[paginateOn].get('models'),
+    state => state[paginateOn].get('pagination'),
     selectState,
-    (loading, models, pagination, selected_state) => {
-      const visible_items = []
-      if (loading) return _.extend({}, selected_state, {visible_items, total_items: 0, loading: true})
+    (loading, models, pagination, selectedState) => {
+      const visibleItems = []
+      if (loading) return _.extend({}, selectedState, {visibleItems, totalItems: 0, loading: true})
 
-      const visible_ids = pagination.get('visible').toJSON()
-      const total_items = +(pagination.get('total'))
+      const visibleIds = pagination.get('visible').toJSON()
+      const totalItems = +(pagination.get('total'))
 
-      _.forEach(visible_ids, id => visible_items.push(models.get(id).toJSON()))
+      _.forEach(visibleIds, id => visibleItems.push(models.get(id).toJSON()))
 
-      return _.extend({}, selected_state, {visible_items, total_items})
+      return _.extend({}, selectedState, {visibleItems, totalItems})
     }
   )
 }

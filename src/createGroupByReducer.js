@@ -1,30 +1,30 @@
 import _ from 'lodash'
 import {fromJS} from 'immutable'
 
-export default function createGroupByReducer(action_types, groupingKey) {
-  const grouped_default_state = fromJS({})
-  const [load_action, delete_action] = action_types
+export default function createGroupByReducer(actionTypes, groupingKey) {
+  const groupedDefaultState = fromJS({})
+  const [loadAction, deleteAction] = actionTypes
 
-  return function groupBy(_state=grouped_default_state, action={}) {
+  return function groupBy(_state=groupedDefaultState, action={}) {
     let state = _state
 
-    if (delete_action && action.type === delete_action) {
-      const {id} = action.deleted_model
-      const grouping_key = groupingKey(action.deleted_model)
-      const current = state.get(grouping_key)
-      return state.merge({[grouping_key]: _.without(current, id)})
+    if (deleteAction && action.type === deleteAction) {
+      const {id} = action.deletedModel
+      const groupingKey = groupingKey(action.deletedModel)
+      const current = state.get(groupingKey)
+      return state.merge({[groupingKey]: _.without(current, id)})
     }
 
-    if (action.type === load_action) {
-      const by_group = _.groupBy(action.models, model => groupingKey(model))
+    if (action.type === loadAction) {
+      const byGroup = _.groupBy(action.models, model => groupingKey(model))
 
-      _.forEach(by_group, (models, grouping_key) => {
-        if (_.isNil(grouping_key)) return
-        let group_state = state.get(grouping_key) || fromJS([])
+      _.forEach(byGroup, (models, groupingKey) => {
+        if (_.isNil(groupingKey)) return
+        let groupState = state.get(groupingKey) || fromJS([])
         _.forEach(models, model => {
-          if (!group_state.includes(model.id)) group_state = group_state.push(model.id)
+          if (!groupState.includes(model.id)) groupState = groupState.push(model.id)
         })
-        state = state.merge({[grouping_key]: group_state})
+        state = state.merge({[groupingKey]: groupState})
       })
     }
 
