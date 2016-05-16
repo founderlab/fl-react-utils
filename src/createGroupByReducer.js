@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import {fromJS} from 'immutable'
 
-export default function createGroupByReducer(actionTypes, groupingKey) {
+export default function createGroupByReducer(actionTypes, groupingKey, options={}) {
   const groupedDefaultState = fromJS({})
   const [loadAction, deleteAction] = actionTypes
 
@@ -20,10 +20,17 @@ export default function createGroupByReducer(actionTypes, groupingKey) {
 
       _.forEach(byGroup, (models, groupingKey) => {
         if (_.isNil(groupingKey)) return
-        let groupState = state.get(groupingKey) || fromJS([])
-        _.forEach(models, model => {
-          if (!groupState.includes(model.id)) groupState = groupState.push(model.id)
-        })
+        let groupState
+
+        if (options.single) {
+          groupState = models[0] && models[0].id
+        }
+        else {
+          state.get(groupingKey) || fromJS([])
+          _.forEach(models, model => {
+            if (!groupState.includes(model.id)) groupState = groupState.push(model.id)
+          })
+        }
         state = state.merge({[groupingKey]: groupState})
       })
     }
