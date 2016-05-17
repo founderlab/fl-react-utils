@@ -2,6 +2,9 @@
 ## [Unreleased]
   
 
+## [0.10.3]
+ - Single option added to groupByReducer. Set to true when creating the reducer to output a mapping of {id: target_id} rather than {id: [list_of_target_ids]}
+
 ## [0.10.0]
  - Code style switched to camelCase for variables. 
  - Frameworkstein initial release.
