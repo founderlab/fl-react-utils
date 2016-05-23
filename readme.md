@@ -1,5 +1,6 @@
 # Boilerplate and helper functions for react/redux that can be shared amongst FounderLab apps
 
+
 createGroupByReducer
 --------------------
 Use this to take an action parsed by responseParser and generate a list of model ids grouped by a given key
@@ -27,6 +28,7 @@ export default function fileReducer(state=defaultState, action={}) {
 }
 ```
 
+
 Sidebar
 -------
 Wrapper for react-sidebar with some useful defaults.
@@ -51,6 +53,7 @@ class SomeComponent extends React.Component {
   }
 }
 ```
+
 
 requestLoggerMiddleware
 -----------------------
