@@ -2,6 +2,9 @@
 ## [Unreleased]
   
 
+## [0.10.3]
+ - Added requestModifierMiddleware so you can mess with your requests before they're sent
+
 ## [0.10.2]
  - Single option added to groupByReducer. Set to true when creating the reducer to output a mapping of {id: target_id} rather than {id: [list_of_target_ids]}
 
