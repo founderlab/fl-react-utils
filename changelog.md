@@ -2,6 +2,9 @@
 ## [Unreleased]
   
 
+## [0.10.4]
+ - Package fixups, added .babelrc to .npmignore
+
 ## [0.10.3]
  - Added requestModifierMiddleware so you can mess with your requests before they're sent
 
