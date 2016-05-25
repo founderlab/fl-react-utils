@@ -2,6 +2,9 @@
 ## [Unreleased]
   
 
+## [0.10.5]
+ - groupByReducer fix
+
 ## [0.10.4]
  - Package fixups, added .babelrc to .npmignore
 
