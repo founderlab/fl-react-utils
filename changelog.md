@@ -3,16 +3,21 @@
   
 
 ## [0.10.5]
- - groupByReducer fix
+ - `fetchComponentData` was moved to fl-utils
+ - `groupByReducer` improvements
+ - Started adding tests
+
+## [0.10.5]
+ - `groupByReducer` fix
 
 ## [0.10.4]
  - Package fixups, added .babelrc to .npmignore
 
 ## [0.10.3]
- - Added requestModifierMiddleware so you can mess with your requests before they're sent
+ - Added `requestModifierMiddleware` so you can mess with your requests before they're sent
 
 ## [0.10.2]
- - Single option added to groupByReducer. Set to true when creating the reducer to output a mapping of {id: target_id} rather than {id: [list_of_target_ids]}
+ - Single option added to `groupByReducer`. Set to true when creating the reducer to output a mapping of {id: target_id} rather than {id: [list_of_target_ids]}
 
 ## [0.10.0]
  - Code style switched to camelCase for variables. 

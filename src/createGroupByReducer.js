@@ -20,10 +20,13 @@ export default function createGroupByReducer(actionTypes, groupingKey, options={
         warning(false, `[fl-react-utils] groupByReducer: groupingKey(action.deletedModel) was nil for deleted model ${JSON.stringify(action.deletedModel)}`)
       }
       else if (!current) {
-        warning(false, `[fl-react-utils] groupByReducer: state.get(key) was nil for key ${key} from deleted model ${JSON.stringify(action.deletedModel)}`)
+        warning(false, `[fl-react-utils] groupByReducer: state.get(key) doesnt exist for key ${key} from deleted model ${JSON.stringify(action.deletedModel)}`)
       }
       else {
-        return state.merge({[key]: current.remove(id)})
+        if (Set.isSet(current)) {
+          return state.merge({[key]: current.remove(id)})
+        }
+        return state.remove(key)
       }
     }
 
