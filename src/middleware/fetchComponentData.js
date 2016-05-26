@@ -1,5 +1,5 @@
 import {ROUTER_DID_CHANGE} from 'redux-router/lib/constants'
-import fetchComponentData from '../fetchComponentData'
+import {fetchComponentData} from 'fl-utils'
 
 const locsEqual = (locA, locB) => (locA.pathname === locB.pathname) && (locA.search === locB.search)
 

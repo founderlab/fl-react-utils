@@ -16,14 +16,16 @@
     "prepublish": "rm -rf ./lib && babel ./src --ignore '/node_modules/' --out-dir ./lib",
     "build": "rm -rf ./lib && babel ./src --ignore '/node_modules/' --out-dir ./lib",
     "watch": "rm -rf ./lib && babel ./src --ignore '/node_modules/' --watch --out-dir ./lib",
-    "test": "eval $(cat test/.env) mocha test/**/*.tests.js"
+    "test": "eval $(cat test/.env) mocha test/**/*.tests.js",
+    "cover": "eval $(cat test/.env) istanbul cover _mocha -- test/**/*.tests.js"
   },
   "dependencies": {
     "classnames": "^2.2.3",
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
     "queue-async": "^1.0.7",
-    "react-sidebar": "^2.1.1"
+    "react-sidebar": "^2.1.1",
+    "fl-utils": "^0.1.0"
   },
   "// wouldBePeerDependencies": {
     "react": "*",
@@ -43,6 +45,14 @@
     "eslint-plugin-react": "^3.4.2",
     "expect": "^1.13.0",
     "mocha": "^2.2.5",
+    "react": "^15.1.0",
+    "react-bootstrap": "^0.29.4",
+    "react-dropzone-s3-uploader": "^0.5.2",
+    "react-router": "^2.4.1",
+    "react-router-bootstrap": "^0.23.0",
+    "react-sidebar": "^2.1.2",
+    "redux-router": "^1.0.0-beta8",
+    "reselect": "^2.5.1",
     "sinon": "^1.17.1"
   }
 }
