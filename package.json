@@ -21,11 +21,12 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "fl-utils": "^0.1.0",
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
     "queue-async": "^1.0.7",
     "react-sidebar": "^2.1.1",
-    "fl-utils": "^0.1.0"
+    "warning": "^2.1.0"
   },
   "// wouldBePeerDependencies": {
     "react": "*",
