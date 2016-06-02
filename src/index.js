@@ -2,7 +2,6 @@ import createGroupByReducer from './createGroupByReducer'
 import createPaginationReducer from './createPaginationReducer'
 import createPaginationSelector from './createPaginationSelector'
 import fetchComponentDataMiddleware from './middleware/fetchComponentData'
-import requestLoggerMiddleware, {createRequestLoggerMiddleware} from './middleware/requestLogger'
 import createRequestModifierMiddleware from './middleware/requestModifier'
 import patchRouteEntry from './patchRouteEntry'
 import Pagination from './components/Pagination'
@@ -15,8 +14,6 @@ export {
   createPaginationReducer,
   createPaginationSelector,
   fetchComponentDataMiddleware,
-  requestLoggerMiddleware,
-  createRequestLoggerMiddleware,
   createRequestModifierMiddleware,
   patchRouteEntry,
   Pagination,
