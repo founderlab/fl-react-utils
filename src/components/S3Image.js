@@ -4,6 +4,7 @@ import React, {Component, PropTypes} from 'react'
 export default class S3Image extends Component {
 
   static propTypes = {
+    className: PropTypes.string,
     filename: PropTypes.string.isRequired,
   }
 
@@ -12,11 +13,11 @@ export default class S3Image extends Component {
   }
 
   render() {
-    const {filename} = this.props
+    const {className, filename} = this.props
     const url = `${this.context.s3Url}/${filename}`
 
     return (
-      <img src={url} {...this.props} />
+      <img src={url} className={className} />
     )
   }
 }

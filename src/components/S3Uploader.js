@@ -1,6 +1,7 @@
 import _ from 'lodash' // eslint-disable-line
 import React, {PropTypes} from 'react'
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
+import {ProgressBar} from 'react-bootstrap'
 
 export default class S3Uploader extends React.Component {
 
@@ -9,7 +10,16 @@ export default class S3Uploader extends React.Component {
     size: PropTypes.string,
     style: PropTypes.object,
     inputProps: PropTypes.object.isRequired,
-    config: PropTypes.object.isRequired,
+    config: PropTypes.object,
+  }
+
+  static defaultProps = {
+    config: {},
+  }
+
+  static contextTypes = {
+    url: PropTypes.string,
+    s3Url: PropTypes.string,
   }
 
   handleFinishedUpload = (info) => {
@@ -18,20 +28,33 @@ export default class S3Uploader extends React.Component {
 
   render() {
     const {config, size, inputProps} = this.props
-    const {url, s3Url} = config
+
+    const url = config.url || this.context.url
+    const s3Url = config.s3Url || this.context.s3Url
+
     const maxFileSize = config.maxFileUploadSize
     const filename = inputProps.value
     const accept = inputProps.accept || ''
 
     const style = this.props.style || {
       height: size === 'large' ? 200 : 100,
+      width: size === 'large' ? 200 : 100,
       border: 'dashed 2px #999',
       borderRadius: 5,
       position: 'relative',
       cursor: 'pointer',
+      overflow: 'hidden',
     }
 
-    const uploaderProps = {style, maxFileSize, s3Url, filename, host: url, accept}
+    const uploaderProps = {
+      style,
+      maxFileSize,
+      s3Url,
+      filename,
+      accept,
+      host: url,
+      progressComponent: ({progress}) => (<ProgressBar to={progress} />),
+    }
 
     return (
       <div className="form-group form-group-lg">
