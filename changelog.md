@@ -2,8 +2,11 @@
 ## [Unreleased]
   
 
+## [0.14.0]
+   - Added RadioField and Input components - helpers for use with redux-form and react-bootstrap
+   
 ## [0.13.0]
-   - Update S3Image and S3Uploader to get urls from context
+   - Updated S3Image and S3Uploader to get urls from context
    
 ## [0.12.0]
    - Moved requestLoggerMiddleware to redux-request-middleware where it can be used with react-native
