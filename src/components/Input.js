@@ -7,7 +7,6 @@ import ReactQuill from 'react-quill'
 import Select from 'react-select'
 import {FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
 import {S3Uploader} from './S3Uploader'
-import QUILL_FORMAT from '../../../consts/quill_format'
 import {validationHelp, validationState} from '../validation'
 
 export default class Input extends React.Component {
