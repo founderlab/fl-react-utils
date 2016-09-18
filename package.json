@@ -30,13 +30,16 @@
   },
   "// wouldBePeerDependencies": {
     "react": "*",
+    "react-quill": "*",
+    "react-select": "*",
     "react-sidebar": "*",
     "react-bootstrap": "*",
     "react-router-bootstrap": "*",
     "react-dropzone-s3-uploader": "*",
     "reselect": "*",
     "react-router": "*",
-    "redux-router": "*"
+    "redux-router": "*",
+    "moment": "*"
   },
   "devDependencies": {
     "babel": "^5.8.38",

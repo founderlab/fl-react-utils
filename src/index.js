@@ -8,6 +8,8 @@ import Pagination from './components/Pagination'
 import S3Image from './components/S3Image'
 import S3Uploader from './components/S3Uploader'
 import Sidebar from './components/Sidebar'
+import Input from './components/Input'
+import RadioField from './components/RadioField'
 
 export {
   createGroupByReducer,
@@ -20,4 +22,6 @@ export {
   S3Image,
   S3Uploader,
   Sidebar,
+  Input,
+  RadioField,
 }
