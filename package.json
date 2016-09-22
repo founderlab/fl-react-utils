@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
-    "fl-utils": "^0.1.0",
     "immutable": "^3.7.4",
     "lodash": "^4.0.0",
     "queue-async": "^1.0.7",

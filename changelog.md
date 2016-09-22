@@ -2,6 +2,10 @@
 ## [Unreleased]
   
 
+## [0.15.0]
+   - Cleaning up bits that have been moved elsewhere
+   - Removed reducers (moved to `fl-redux-utils`) and middleware (fetchComponentData moved to `fetch-component-data` and requestModifier moved to `redux-request-middleware`)
+   
 ## [0.14.0]
    - Added RadioField and Input components - helpers for use with redux-form and react-bootstrap
    

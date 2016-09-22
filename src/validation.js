@@ -18,8 +18,8 @@ export function validationHelp(field) {
   return (field.touched && field.error) || null
 }
 
-const yesterday = moment().subtract(1, 'day')
 export function validDate(current) {
+  const yesterday = moment().subtract(1, 'day')
   return current.isAfter(yesterday)
 }
 
