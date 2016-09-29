@@ -5,8 +5,8 @@ import ReactDatetime from 'react-datetime'
 import Inflection from 'inflection'
 import ReactQuill from 'react-quill'
 import Select from 'react-select'
-import {FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
-import {S3Uploader} from './S3Uploader'
+import {FormGroup, Checkbox, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
+import S3Uploader from './S3Uploader'
 import {validationHelp, validationState} from '../validation'
 
 export default class Input extends React.Component {
@@ -59,10 +59,13 @@ export default class Input extends React.Component {
 
     const id = Inflection.dasherize((label || '').toLowerCase())
     let feedback = true
+    let hideLabel = false
     let control
 
     switch (type) {
       case 'rich':
+      case 'rich-text':
+      case 'quill':
         control = (<ReactQuill theme={this.props.quillTheme} format={this.props.quillFormat} {...inputProps} />)
         break
 
@@ -105,8 +108,24 @@ export default class Input extends React.Component {
         break
 
       case 'image':
+      case 'file':
         control = (
           <S3Uploader inputProps={inputProps} />
+        )
+        break
+
+      case 'static':
+        control = (
+          <FormControl.Static {...bsProps} {...inputProps}>{inputProps.value}</FormControl.Static>
+        )
+        break
+
+      case 'checkbox':
+      case 'boolean':
+        inputProps.checked = !!inputProps.value
+        hideLabel = true
+        control = (
+          <Checkbox inline {...bsProps} {...inputProps}>{label}</Checkbox>
         )
         break
 
@@ -116,15 +135,18 @@ export default class Input extends React.Component {
         )
         break
 
+      // case 'text':
+      // case 'email':
+      // case 'password':
       default:
         control = (
-          <FormControl componentClass="input" type={type} {...bsProps} {...inputProps} />
+          <FormControl type={type} {...bsProps} {...inputProps} />
         )
     }
 
     return (
       <FormGroup controlId={id} validationState={validationState(meta)}>
-        {label && <ControlLabel>{label}</ControlLabel>}
+        {label && !hideLabel && <ControlLabel>{label}</ControlLabel>}
         {help && helpTop && (<HelpBlock>{help}</HelpBlock>)}
         {control}
         {feedback && <FormControl.Feedback />}
@@ -132,5 +154,4 @@ export default class Input extends React.Component {
       </FormGroup>
     )
   }
-
 }
