@@ -15,6 +15,7 @@ export default class Input extends React.Component {
     label: PropTypes.string,
     helpTop: PropTypes.bool,
     help: PropTypes.string,
+    defaultHelp: PropTypes.string,
     type: PropTypes.string,
     bsProps: PropTypes.object,
     meta: PropTypes.object,
@@ -55,7 +56,10 @@ export default class Input extends React.Component {
       autoComplete: 'on',
     }, this.props.input, this.props.inputProps)
 
-    const help = _.isUndefined(this.props.help) ? validationHelp(meta) : this.props.help
+    let help = this.props.help
+    if (_.isUndefined(help)) {
+      help = validationHelp(meta) || this.props.defaultHelp
+    }
 
     const id = Inflection.dasherize((label || '').toLowerCase())
     let feedback = true

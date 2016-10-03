@@ -5,7 +5,7 @@ import {Field} from 'redux-form'
 import {FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap'
 import {validationState} from '../validation'
 
-export default class Input extends React.Component {
+export default class RadioField extends React.Component {
 
   static propTypes = {
     name: PropTypes.string,
@@ -22,8 +22,6 @@ export default class Input extends React.Component {
   render() {
     const {name, label, help, validationState, helpTop} = this.props
     const id = Inflection.dasherize((label || '').toLowerCase())
-
-    console.log('input', this.props)
 
     return (
       <FormGroup controlId={id} validationState={validationState}>
@@ -49,21 +47,3 @@ export default class Input extends React.Component {
 
 }
 
-      //       <Field
-      //         name="gender"
-      //         label="Gender"
-      //         type="radio"
-      //         options={[
-      //           {label: 'Male', value: 'male'},
-      //           {label: 'Female', value: 'female'},
-      //           {label: 'Other or prefer not to say', value: 'other'},
-      //         ]}
-      //         help="Your gender won’t be visible to other users. It's used for reporting purposes only."
-      //         component={Input}
-      //       />      <div>
-      //   <label>Sex</label>
-      //   <div>
-      //     <label><Field name="sex" component="input" type="radio" value="male"/> Male</label>
-      //     <label><Field name="sex" component="input" type="radio" value="female"/> Female</label>
-      //   </div>
-      // </div>
