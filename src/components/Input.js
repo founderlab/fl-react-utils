@@ -99,11 +99,12 @@ export default class Input extends React.Component {
           warning(false, 'react-select components require an options prop')
           return null
         }
-        const {onBlur, ...props} = inputProps
+        const {onChange, onBlur, ...props} = inputProps
         feedback = false
         control = (
           <Select
             value={inputProps.value}
+            onChange={opt => onChange(opt.value)}
             onBlur={() => onBlur(inputProps.value)}
             options={this.props.options}
             {...props}
