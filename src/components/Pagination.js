@@ -32,7 +32,7 @@ export default class Pagination extends Component {
 
     if (start > 1) {
       links.push(
-        <LinkContainer key={1} to={location.pathname} query={_.extend({}, location.query, {page: 1})}>
+        <LinkContainer key={1} to={{pathname: location.pathname, query: _.extend({}, location.query, {page: 1})}}>
           <Button bsStyle="default">1</Button>
         </LinkContainer>
       )
@@ -41,7 +41,7 @@ export default class Pagination extends Component {
 
     for (let i=start; i<=end; i++) {
       links.push(
-        <LinkContainer key={i} to={location.pathname} query={_.extend({}, location.query, {page: i})}>
+        <LinkContainer key={i} to={{pathname: location.pathname, query: _.extend({}, location.query, {page: i})}}>
           <Button bsStyle={currentPage === i ? 'primary' : 'default'}>{i}</Button>
         </LinkContainer>
       )
@@ -49,7 +49,7 @@ export default class Pagination extends Component {
 
     if (end < totalPages) {
       links.push(
-        <LinkContainer key="next" to={location.pathname} query={_.extend({}, location.query, {page: currentPage+1})}>
+        <LinkContainer key="next" to={{pathname: location.pathname, query: _.extend({}, location.query, {page: currentPage+1})}}>
           <Button bsStyle="default"><Glyphicon glyph="chevron-right" /></Button>
         </LinkContainer>
       )
