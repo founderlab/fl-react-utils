@@ -101,12 +101,15 @@ export default class Input extends React.Component {
         }
         const {onChange, onBlur, ...props} = inputProps
         feedback = false
+
+        const funcs = {}
+        if (onChange) funcs.onChange = opts => onChange(inputProps.multi ? opts.map(o => o.value) : opts.value)
+        if (onBlur) funcs.onBlur = () => onBlur(inputProps.value)
+
         control = (
           <Select
-            value={inputProps.value}
-            onChange={opt => onChange(opt.value)}
-            onBlur={() => onBlur(inputProps.value)}
             options={this.props.options}
+            {...funcs}
             {...props}
           />
         )

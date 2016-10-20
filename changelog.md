@@ -2,18 +2,22 @@
 ## [Unreleased]
   
 
+## [0.15.3]
+  - react-select should correctly return a value rather than a {label, value} object
+  - Updated pagination buttons for react-router-bootstraps api changes
+
 ## [0.15.0]
-   - Cleaning up bits that have been moved elsewhere
-   - Removed reducers (moved to `fl-redux-utils`) and middleware (fetchComponentData moved to `fetch-component-data` and requestModifier moved to `redux-request-middleware`)
-   
+  - Cleaning up bits that have been moved elsewhere
+  - Removed reducers (moved to `fl-redux-utils`) and middleware (fetchComponentData moved to `fetch-component-data` and requestModifier moved to `redux-request-middleware`)
+  
 ## [0.14.0]
-   - Added RadioField and Input components - helpers for use with redux-form and react-bootstrap
-   
+  - Added RadioField and Input components - helpers for use with redux-form and react-bootstrap
+  
 ## [0.13.0]
-   - Updated S3Image and S3Uploader to get urls from context
-   
+  - Updated S3Image and S3Uploader to get urls from context
+  
 ## [0.12.0]
-   - Moved requestLoggerMiddleware to redux-request-middleware where it can be used with react-native
+  - Moved requestLoggerMiddleware to redux-request-middleware where it can be used with react-native
 
 ## [0.11.0]
   - `fetchComponentData` was moved to fl-utils
@@ -57,7 +61,7 @@
 
 ## [0.3.3]
   - createServerRenderer takes an alwaysFetch parameter for components that should always have their 
-   fetchData method called
+  fetchData method called
 
 ## [0.3.2]
   - createGroupByReducer added
