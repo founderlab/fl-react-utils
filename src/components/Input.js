@@ -9,6 +9,14 @@ import {FormGroup, Checkbox, ControlLabel, FormControl, HelpBlock} from 'react-b
 import S3Uploader from './S3Uploader'
 import {validationHelp, validationState} from '../validation'
 
+function ensureArray(values) {
+  if (_.isArray(values)) return values
+  if (!values) return []
+  if (_.isString(values)) return values.split(',')
+  warning(false, `[fl-react-utils] Input: react-select gave a strange value: ${JSON.stringify(values)}`)
+  return []
+}
+
 export default class Input extends React.Component {
 
   static propTypes = {
@@ -102,18 +110,9 @@ export default class Input extends React.Component {
         const {onChange, onBlur, value, ...props} = inputProps
         feedback = false
         const stringValue = _.isArray(value) ? value.join(',') : value
-
         const funcs = {}
-        if (onChange) funcs.onChange = value => onChange(result)
-        if (onBlur) funcs.onBlur = () => {
-          let result = value
-          // onBlur(value)
-          if (inputProps.multi) {
-            if (value) result = value.split(',')
-            else result = []
-          }
-          onBlur(result)
-        }
+        if (onChange) funcs.onChange = value => onChange(inputProps.multi ? ensureArray(value) : value)
+        if (onBlur) funcs.onBlur = () => onBlur(inputProps.multi ? ensureArray(value) : value)
 
         control = (
           <Select
