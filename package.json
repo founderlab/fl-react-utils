@@ -26,7 +26,7 @@
     "queue-async": "^1.0.7",
     "react-sidebar": "^2.1.1",
     "warning": "^2.1.0",
-    "react-select": "1.0.0-rc.2"
+    "react-select": "^0.9.1"
   },
   "// wouldBePeerDependencies": {
     "react": "*",
