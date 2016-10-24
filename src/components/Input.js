@@ -99,16 +99,26 @@ export default class Input extends React.Component {
           warning(false, 'react-select components require an options prop')
           return null
         }
-        const {onChange, onBlur, ...props} = inputProps
+        const {onChange, onBlur, value, ...props} = inputProps
         feedback = false
+        const stringValue = _.isArray(value) ? value.join(',') : value
 
         const funcs = {}
-        if (onChange) funcs.onChange = opts => onChange(inputProps.multi ? opts.map(o => o.value) : opts.value)
-        if (onBlur) funcs.onBlur = () => onBlur(inputProps.value)
+        if (onChange) funcs.onChange = value => onChange(result)
+        if (onBlur) funcs.onBlur = () => {
+          let result = value
+          // onBlur(value)
+          if (inputProps.multi) {
+            if (value) result = value.split(',')
+            else result = []
+          }
+          onBlur(result)
+        }
 
         control = (
           <Select
             options={this.props.options}
+            value={stringValue}
             {...funcs}
             {...props}
           />
