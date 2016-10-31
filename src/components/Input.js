@@ -40,7 +40,7 @@ export default class Input extends React.Component {
     quillFormat: PropTypes.array,
   }
 
-  static defaultProps: {
+  static defaultProps = {
     type: 'text',
     quillTheme: 'snow',
     quillFormat: [
