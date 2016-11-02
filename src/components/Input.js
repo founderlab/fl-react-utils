@@ -84,7 +84,7 @@ export default class Input extends React.Component {
       case 'date':
       case 'datetime':
         const placeholder = type === 'date' ? 'DD/MM/YYYY' : 'DD/MM/YYYY 9:00 AM'
-        control = (<ReactDatetime closeOnSelect inputProps={{placeholder}} {...inputProps} />)
+        control = (<ReactDatetime closeOnSelect inputProps={{placeholder}} {..._.omit(inputProps, 'onFocus')} />)
         break
 
       case 'select':
