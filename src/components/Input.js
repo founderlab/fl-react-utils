@@ -84,7 +84,6 @@ export default class Input extends React.Component {
 
       case 'date':
       case 'datetime':
-        console.log(this.props)
         const placeholder = type === 'date' ? 'DD/MM/YYYY' : 'DD/MM/YYYY 9:00 am'
         if (type === 'date') inputProps.timeFormat = false
         if (!this.props.meta.dirty && inputProps.value) {
