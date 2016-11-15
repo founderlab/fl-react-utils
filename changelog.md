@@ -2,6 +2,10 @@
 ## [Unreleased]
   
 
+## [0.15.9]
+  - Various bug fixes
+  - Format initial values of date fields correctly
+
 ## [0.15.3]
   - react-select should correctly return a value rather than a {label, value} object
   - Updated pagination buttons for react-router-bootstraps api changes
