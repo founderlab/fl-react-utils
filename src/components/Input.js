@@ -1,4 +1,5 @@
 import _ from 'lodash' // eslint-disable-line
+import moment from 'moment'
 import React, {PropTypes} from 'react'
 import warning from 'warning'
 import ReactDatetime from 'react-datetime'
@@ -83,8 +84,12 @@ export default class Input extends React.Component {
 
       case 'date':
       case 'datetime':
-        const placeholder = type === 'date' ? 'DD/MM/YYYY' : 'DD/MM/YYYY 9:00 AM'
+        console.log(this.props)
+        const placeholder = type === 'date' ? 'DD/MM/YYYY' : 'DD/MM/YYYY 9:00 am'
         if (type === 'date') inputProps.timeFormat = false
+        if (!this.props.meta.dirty && inputProps.value) {
+          inputProps.value = moment(inputProps.value).format(type === 'date' ? 'DD/MM/YYYY' : 'DD/MM/YYYY hh:mm a')
+        }
         control = (<ReactDatetime closeOnSelect inputProps={{placeholder}} {..._.omit(inputProps, 'onFocus')} />)
         break
 
