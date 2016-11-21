@@ -15,7 +15,6 @@ export function validationStyle(field) {
 // Vadliation help text for react-bootstrap Input component
 export function validationHelp(field) {
   if (!field) return null
-  field.touched && field.error && console.log('help field', field)
   return (field.touched && !field.active && field.error) || null
 }
 
