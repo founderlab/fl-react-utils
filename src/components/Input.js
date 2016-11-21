@@ -42,6 +42,7 @@ export default class Input extends React.Component {
   }
 
   static defaultProps = {
+    feedback: true,
     type: 'text',
     quillTheme: 'snow',
     quillFormat: [
@@ -71,7 +72,7 @@ export default class Input extends React.Component {
     }
 
     const id = Inflection.dasherize((label || '').toLowerCase())
-    let feedback = true
+    let feedback = this.props.feedback
     let hideLabel = false
     let control
 
