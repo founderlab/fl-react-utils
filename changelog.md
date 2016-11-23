@@ -1,6 +1,10 @@
 
 ## [Unreleased]
   
+## [0.15.15]
+  - Validation: Only show success validation for dirty fields
+  - Validation: Form feedback only applies when the input is not active
+  - Input: Form feedback is optional on (feedback={false} will disable it)
 
 ## [0.15.9]
   - Various bug fixes
