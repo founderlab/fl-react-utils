@@ -1,18 +1,22 @@
 import moment from 'moment'
 
-// Validation highlighting for react-bootstrap Input component
+// Validation highlighting for react-bootstrap Input components
 export function validationState(field) {
+  console.log('validationState field', field)
   if (!field || !field.touched || field.active) return null
-  return field.error ? 'error' : 'success'
+  if (field.error) return 'error'
+  if (field.dirty) return 'success'
 }
 
-// Validation highlighting for other input component
+// Validation highlighting for other input components
 export function validationStyle(field) {
+  console.log('validationStyle field', field)
   if (!field || !field.touched || field.active) return null
-  return field.error ? 'has-error' : 'has-success'
+  if (field.error) return 'has-error'
+  if (field.dirty) return 'has-success'
 }
 
-// Vadliation help text for react-bootstrap Input component
+// Validation help text for react-bootstrap Input components
 export function validationHelp(field) {
   if (!field) return null
   return (field.touched && !field.active && field.error) || null
