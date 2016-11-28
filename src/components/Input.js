@@ -42,7 +42,7 @@ export default class Input extends React.Component {
   }
 
   static defaultProps = {
-    feedback: true,
+    feedback: false,
     type: 'text',
     quillTheme: 'snow',
     quillFormat: [
