@@ -15,9 +15,7 @@ export default class FLSidebar extends Component {
   }
 
   static defaultProps = {
-    reactSidebarProps: {
-      sidebarClassName: 'sidebar',
-    },
+    sidebarClassName: 'sidebar',
     dockedWidth: 768,
   }
 
@@ -55,14 +53,14 @@ export default class FLSidebar extends Component {
   }
 
   render() {
-    const sidebarProps = _.extend(this.props.reactSidebarProps, {
-      sidebar: this.props.sidebar,
+    const sidebarProps = _.extend({}, this.props, {
       docked: this.state.docked,
       open: this.state.open,
       onSetOpen: this.onSetOpen,
     })
 
     const disableSidebarToggle = this.props.disableToggle || this.state.docked
+
     return (
       <Sidebar {...sidebarProps}>
         {!disableSidebarToggle && (
