@@ -9,7 +9,6 @@ export default class FLSidebar extends Component {
     changeKey: PropTypes.string,
     dockedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     disableToggle: PropTypes.bool,
-    reactSidebarProps: PropTypes.object.isRequired,
     sidebar: PropTypes.element.isRequired,
     children: PropTypes.node.isRequired,
   }
