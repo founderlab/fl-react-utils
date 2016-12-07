@@ -179,7 +179,7 @@ export default class Input extends React.Component {
     }
 
     return (
-      <FormGroup controlId={id} validationState={this.props.validationState && this.props.validationState(meta)}>
+      <FormGroup controlId={id} validationState={this.props.validationState ? this.props.validationState(meta) : null}>
         {label && !hideLabel && <ControlLabel>{label}</ControlLabel>}
         {help && helpTop && (<HelpBlock>{help}</HelpBlock>)}
         {control}
