@@ -42,6 +42,7 @@ export default class Input extends React.Component {
   }
 
   static defaultProps = {
+    validationState,
     feedback: false,
     type: 'text',
     quillTheme: 'snow',
@@ -178,7 +179,7 @@ export default class Input extends React.Component {
     }
 
     return (
-      <FormGroup controlId={id} validationState={validationState(meta)}>
+      <FormGroup controlId={id} validationState={this.props.validationState && this.props.validationState(meta)}>
         {label && !hideLabel && <ControlLabel>{label}</ControlLabel>}
         {help && helpTop && (<HelpBlock>{help}</HelpBlock>)}
         {control}
