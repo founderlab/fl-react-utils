@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import Button from './components/LoaderButton'
 import Input from './components/Input'
 import RadioField from './components/RadioField'
+import SplitDatetime from './components/SplitDatetime'
 import {validationState, validationStyle, validationHelp, validDate, allFieldsRequiredFn} from './validation'
 
 export {
@@ -17,6 +18,7 @@ export {
   Button,
   Input,
   RadioField,
+  SplitDatetime,
 
   validationState,
   validationStyle,

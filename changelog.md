@@ -1,6 +1,10 @@
 
 ## [Unreleased]
   
+## [0.15.22]
+  - Bunch of bug fixes and minor improvements
+  - Added the SplitDatetime compnent, which renders a datetime selector with separate inputs for date and time.
+
 ## [0.15.15]
   - Validation: Only show success validation for dirty fields
   - Validation: Form feedback only applies when the input is not active
