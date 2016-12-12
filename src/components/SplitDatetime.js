@@ -44,7 +44,7 @@ export default class Input extends React.Component {
   static defaultProps = {
     feedback: false,
     isValidDate: current => current.isAfter(moment().subtract(1, 'day')),
-    dateFormat: 'DD/MM/YYYY',
+    localeDateFormat: 'L',
     timeFormat: 'hh:mm a',
   }
 
@@ -53,6 +53,8 @@ export default class Input extends React.Component {
     this.state = {}
   }
 
+  getDateFormat = () => this.props.dateFormat ? this.props.dateFormat : moment.localeData().longDateFormat(this.props.localeDateFormat)
+
   integrateTimeWithDate = date => {
     const currentTime = moment(this._time.state.inputValue, this.props.timeFormat)
     const newDate = moment(date).hours(currentTime.hours()).minutes(currentTime.minutes())
@@ -60,7 +62,7 @@ export default class Input extends React.Component {
   }
 
   integrateDateWithTime = time => {
-    const currentDate = moment(this._date.state.inputValue, this.props.dateFormat)
+    const currentDate = moment(this._date.state.inputValue, this.getDateFormat())
     const newDate = currentDate.hours(time.hours()).minutes(time.minutes())
     return newDate
   }
@@ -83,32 +85,36 @@ export default class Input extends React.Component {
       help = validationHelp(meta) || this.props.defaultHelp
     }
 
+    const dateFormat = this.getDateFormat()
+
     const id = Inflection.dasherize((label || '').toLowerCase())
     let feedback = this.props.feedback
 
     const dateInputProps = {
       ref: c => this._date = c,
+      dateFormat,
+      placeholder: dateFormat,
+      timeFormat: false,
       className: 'date',
+      closeOnSelect: true,
       onChange: this.onDateChange,
       onDateBlur: this.onDateBlur,
-      placeholder: 'DD/MM/YYYY',
-      timeFormat: false,
-      closeOnSelect: true,
       isValidDate: this.props.isValidDate,
       ..._.omit(inputProps, 'onBlur', 'onChange', 'onFocus')
     }
     const timeInputProps = {
       ref: c => this._time = c,
-      className: 'time',
-      onBlur: this.onTimeBlur,
       placeholder: '9:00 am',
       dateFormat: false,
+      timeFormat: this.props.timeFormat,
+      className: 'time',
       closeOnSelect: true,
+      onBlur: this.onTimeBlur,
       ..._.omit(inputProps, 'onBlur', 'onFocus')
     }
-    if (!this.props.meta.dirty && inputProps.value) {
-      dateInputProps.value = moment(inputProps.value).format(this.props.dateFormat)
-      timeInputProps.value = moment(inputProps.value).format(this.props.timeFormat)
+    if (!this.props.meta.dirty && _.isString(inputProps.value)) {
+      dateInputProps.value = moment(inputProps.value)
+      timeInputProps.value = moment(inputProps.value)
     }
     const dateControl = (<ReactDatetime {...dateInputProps} />)
     const timeControl = (<ReactDatetime {...timeInputProps} />)

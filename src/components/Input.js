@@ -43,6 +43,7 @@ export default class Input extends React.Component {
 
   static defaultProps = {
     validationState,
+    localeDateFormat: 'L',
     feedback: false,
     type: 'text',
     quillTheme: 'snow',
@@ -88,18 +89,20 @@ export default class Input extends React.Component {
       case 'datetime':
       case 'time':
         let placeholder = 'DD/MM/YYYY 9:00 am'
+        inputProps.dateFormat = this.props.dateFormat ? this.props.dateFormat : moment.localeData().longDateFormat(this.props.localeDateFormat)
         if (type === 'date') {
-          placeholder = 'DD/MM/YYYY'
+          placeholder = inputProps.dateFormat
           inputProps.timeFormat = false
-          if (!this.props.meta.dirty && inputProps.value) inputProps.value = moment(inputProps.value).format('DD/MM/YYYY')
+          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
-        if (type === 'time') {
+        else if (type === 'time') {
           placeholder = '9:00 am'
           inputProps.dateFormat = false
-          if (!this.props.meta.dirty && inputProps.value) inputProps.value = moment(inputProps.value).format('hh:mm a')
+          inputProps.timeFormat = 'hh:mm a'
+          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
         else {
-          if (!this.props.meta.dirty && inputProps.value) inputProps.value = moment(inputProps.value).format('DD/MM/YYYY hh:mm a')
+          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
         control = (<ReactDatetime closeOnSelect inputProps={{placeholder}} {..._.omit(inputProps, 'onFocus')} />)
         break
