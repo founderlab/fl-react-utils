@@ -23,8 +23,8 @@ export default class Input extends React.Component {
   static propTypes = {
     label: PropTypes.string,
     helpTop: PropTypes.bool,
-    help: PropTypes.string,
-    defaultHelp: PropTypes.string,
+    help: PropTypes.node,
+    defaultHelp: PropTypes.node,
     type: PropTypes.string,
     bsProps: PropTypes.object,
     meta: PropTypes.object,
