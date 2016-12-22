@@ -21,13 +21,10 @@ function ensureArray(values) {
 export default class Input extends React.Component {
 
   static propTypes = {
-    label: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-    ]),
-    helpTop: PropTypes.bool,
+    label: PropTypes.node,
     help: PropTypes.node,
     defaultHelp: PropTypes.node,
+    helpTop: PropTypes.bool,
     type: PropTypes.string,
     bsProps: PropTypes.object,
     meta: PropTypes.object,
