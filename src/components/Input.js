@@ -21,7 +21,10 @@ function ensureArray(values) {
 export default class Input extends React.Component {
 
   static propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
     helpTop: PropTypes.bool,
     help: PropTypes.node,
     defaultHelp: PropTypes.node,
@@ -39,6 +42,10 @@ export default class Input extends React.Component {
     onBlur: PropTypes.func,
     quillTheme: PropTypes.string,
     quillFormat: PropTypes.array,
+    validationState: PropTypes.func,
+    feedback: PropTypes.bool,
+    dateFormat: PropTypes.string,
+    localeDateFormat: PropTypes.string,
   }
 
   static defaultProps = {
@@ -62,18 +69,18 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const {label, meta, helpTop, type, bsProps} = this.props
+    const {label, input, meta, helpTop, type, bsProps, defaultHelp, validationState, options} = this.props
 
     const inputProps = _.extend({
       autoComplete: 'on',
-    }, this.props.input, this.props.inputProps)
+    }, input, this.props.inputProps)
 
     let help = this.props.help
     if (_.isUndefined(help)) {
-      help = validationHelp(meta) || this.props.defaultHelp
+      help = validationHelp(meta) || defaultHelp
     }
 
-    const id = Inflection.dasherize((label || '').toLowerCase())
+    const id = Inflection.dasherize(input.name.toLowerCase())
     let feedback = this.props.feedback
     let hideLabel = false
     let control
@@ -89,33 +96,33 @@ export default class Input extends React.Component {
       case 'datetime':
       case 'time':
         let placeholder = 'DD/MM/YYYY 9:00 am'
-        inputProps.dateFormat = this.props.dateFormat ? this.props.dateFormat : moment.localeData().longDateFormat(this.props.localeDateFormat)
+        inputProps.dateFormat = this.props.dateFormat || moment.localeData().longDateFormat(this.props.localeDateFormat)
         if (type === 'date') {
           placeholder = inputProps.dateFormat
           inputProps.timeFormat = false
-          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
+          if (!meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
         else if (type === 'time') {
           placeholder = '9:00 am'
           inputProps.dateFormat = false
           inputProps.timeFormat = 'hh:mm a'
-          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
+          if (!meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
         else {
-          if (!this.props.meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
+          if (!meta.dirty && _.isString(inputProps.value)) inputProps.value = moment(inputProps.value)
         }
         control = (<ReactDatetime closeOnSelect inputProps={{placeholder}} {..._.omit(inputProps, 'onFocus')} />)
         break
 
       case 'select':
-        if (!this.props.options) {
+        if (!options) {
           warning(false, 'select components require an options prop')
           return null
         }
         control = (
           <FormControl componentClass="select" {...inputProps} value={inputProps.value}>
             {this.props.includeEmpty && (<option />)}
-            {_.map(this.props.options, option => (
+            {_.map(options, option => (
               <option key={option.value} value={option.value}>{option.label}</option>
             ))}
           </FormControl>
@@ -123,7 +130,7 @@ export default class Input extends React.Component {
         break
 
       case 'react-select':
-        if (!this.props.options) {
+        if (!options) {
           warning(false, 'react-select components require an options prop')
           return null
         }
@@ -136,7 +143,7 @@ export default class Input extends React.Component {
 
         control = (
           <Select
-            options={this.props.options}
+            options={options}
             value={stringValue}
             {...funcs}
             {...props}
@@ -182,7 +189,7 @@ export default class Input extends React.Component {
     }
 
     return (
-      <FormGroup controlId={id} validationState={this.props.validationState ? this.props.validationState(meta) : null}>
+      <FormGroup controlId={id} validationState={validationState ? validationState(meta) : null}>
         {label && !hideLabel && <ControlLabel>{label}</ControlLabel>}
         {help && helpTop && (<HelpBlock>{help}</HelpBlock>)}
         {control}
