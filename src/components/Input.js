@@ -77,7 +77,7 @@ export default class Input extends React.Component {
       help = validationHelp(meta) || defaultHelp
     }
 
-    const id = Inflection.dasherize(input.name.toLowerCase())
+    const id = this.props.id || Inflection.dasherize((this.props.name || inputProps.name || '').toLowerCase())
     let feedback = this.props.feedback
     let hideLabel = false
     let control
