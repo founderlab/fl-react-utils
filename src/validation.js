@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import moment from 'moment'
 
 // Validation highlighting for react-bootstrap Input components
@@ -25,7 +26,8 @@ export function validDate(current) {
   return current.isAfter(yesterday)
 }
 
-export function allFieldsRequiredFn(fieldNames) {
+export function allFieldsRequiredFn(...args) {
+  const fieldNames = _.isArray(args[0]) ? args[0] : args
   return data => {
     const errors = {}
     fieldNames.forEach(fieldName => {
