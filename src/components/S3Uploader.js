@@ -41,7 +41,7 @@ export default class S3Uploader extends React.Component {
 
     const uploaderProps = {
       style,
-      s3Url: config.s3Url,
+      s3Url: config.s3Url || this.context.s3Url,
       filename: inputProps.value,
       maxSize: config.maxFileUploadSize,
       progressComponent: ({progress}) => (<ProgressBar to={progress} />),
