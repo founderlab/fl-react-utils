@@ -28,11 +28,13 @@ export function validDate(current) {
 
 export function allFieldsRequiredFn(...args) {
   const fieldNames = _.isArray(args[0]) ? args[0] : args
-  return data => {
+  return (data, stff) => {
     const errors = {}
+    console.log('data', data, stff)
     fieldNames.forEach(fieldName => {
       if (!data[fieldName]) errors[fieldName] = 'This field is required'
     })
+    console.log('errors', errors)
     return errors
   }
 }
