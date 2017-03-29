@@ -7,6 +7,7 @@ import Inflection from 'inflection'
 import ReactQuill from 'react-quill'
 import Select from 'react-select'
 import {FormGroup, Checkbox, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
+import ReactMarkdown from 'react-markdown'
 import S3Uploader from './S3Uploader'
 import {validationHelp, validationState} from '../validation'
 
@@ -30,6 +31,7 @@ export default class Input extends React.Component {
     meta: PropTypes.object,
     input: PropTypes.object,
     inputProps: PropTypes.object,
+    markdownProps: PropTypes.object,
     options: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
@@ -63,10 +65,16 @@ export default class Input extends React.Component {
       'link',
       'align',
     ],
+    markdownProps: {
+      escapeHtml: true,
+      renderers: {
+        Link: props => (<a href={props.href} target="_blank" />),
+      },
+    }
   }
 
   render() {
-    const {label, input, meta, helpTop, type, bsProps, defaultHelp, validationState, options} = this.props
+    const {label, input, meta, helpMd, defaultHelpMd, helpTop, type, bsProps, defaultHelp, validationState, options} = this.props
 
     const inputProps = _.extend({
       autoComplete: 'on',
@@ -74,7 +82,12 @@ export default class Input extends React.Component {
 
     let help = this.props.help
     if (_.isUndefined(help)) {
-      help = validationHelp(meta) || defaultHelp
+      if (helpMd) {
+        help = (<ReactMarkdown source={helpMd} {...this.props.markdownProps} />)
+      }
+      else {
+        help = validationHelp(meta) || defaultHelp || (defaultHelpMd && (<ReactMarkdown source={defaultHelpMd} {...this.props.markdownProps} />))
+      }
     }
 
     const id = this.props.id || Inflection.dasherize((this.props.name || inputProps.name || '').toLowerCase())
