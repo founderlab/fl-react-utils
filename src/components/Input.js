@@ -68,7 +68,7 @@ export default class Input extends React.Component {
     markdownProps: {
       escapeHtml: true,
       renderers: {
-        Link: props => (<a href={props.href} target="_blank" />),
+        Link: props => (<a href={props.href} target="_blank">{props.children}</a>),
       },
     }
   }
