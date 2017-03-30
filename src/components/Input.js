@@ -41,7 +41,10 @@ export default class Input extends React.Component {
     onBlur: PropTypes.func,
     quillTheme: PropTypes.string,
     quillFormat: PropTypes.array,
-    validationState: PropTypes.func,
+    validationState: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.bool,
+    ]),
     feedback: PropTypes.bool,
     dateFormat: PropTypes.string,
     localeDateFormat: PropTypes.string,
