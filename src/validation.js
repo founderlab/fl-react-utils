@@ -3,22 +3,22 @@ import moment from 'moment'
 
 // Validation highlighting for react-bootstrap Input components
 export function validationState(field) {
-  if (!field || !field.touched || field.active) return null
+  if (!field || !field.submitFailed) return null
   if (field.error) return 'error'
   if (field.dirty) return 'success'
 }
 
 // Validation highlighting for other input components
 export function validationStyle(field) {
-  if (!field || !field.touched || field.active) return null
+  if (!field || !field.submitFailed) return null
   if (field.error) return 'has-error'
   if (field.dirty) return 'has-success'
 }
 
 // Validation help text for react-bootstrap Input components
 export function validationHelp(field) {
-  if (!field) return null
-  return (field.touched && !field.active && field.error) || null
+  if (!field || !field.submitFailed) return null
+  return field.error || null
 }
 
 export function validDate(current) {
