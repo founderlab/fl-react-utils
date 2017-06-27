@@ -1,5 +1,6 @@
 import _ from 'lodash' // eslint-disable-line
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import {ProgressBar} from 'react-bootstrap'
 

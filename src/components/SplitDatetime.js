@@ -1,6 +1,7 @@
 import _ from 'lodash' // eslint-disable-line
 import moment from 'moment'
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import warning from 'warning'
 import ReactDatetime from 'react-datetime'
 import Inflection from 'inflection'

@@ -12,14 +12,19 @@ export default class Pagination extends Component {
     className: PropTypes.string,
     totalItems: PropTypes.number,
     maxLinks: PropTypes.number,
+    prev: PropTypes.node,
+    next: PropTypes.node,
   }
 
   static defaultProps = {
     maxLinks: 4,
+    next: (<Glyphicon glyph="chevron-right" />),
   }
 
+  link = page => ({pathname: this.props.location.pathname, query: _.extend({}, this.props.location.query, {page})})
+
   render() {
-    const {location, itemsPerPage, currentPage, totalItems} = this.props
+    const {location, itemsPerPage, currentPage, totalItems, next, prev} = this.props
     if (!totalItems) return null
     const maxLinks = this.props.maxLinks - 1
     const links = []
@@ -32,7 +37,7 @@ export default class Pagination extends Component {
 
     if (start > 1) {
       links.push(
-        <LinkContainer key={1} to={{pathname: location.pathname, query: _.extend({}, location.query, {page: 1})}}>
+        <LinkContainer key={1} to={this.link(1)}>
           <Button bsStyle="default">1</Button>
         </LinkContainer>
       )
@@ -41,7 +46,7 @@ export default class Pagination extends Component {
 
     for (let i=start; i<=end; i++) {
       links.push(
-        <LinkContainer key={i} to={{pathname: location.pathname, query: _.extend({}, location.query, {page: i})}}>
+        <LinkContainer key={i} to={this.link(i)}>
           <Button bsStyle={currentPage === i ? 'primary' : 'default'}>{i}</Button>
         </LinkContainer>
       )
@@ -49,8 +54,16 @@ export default class Pagination extends Component {
 
     if (end < totalPages) {
       links.push(
-        <LinkContainer key="next" to={{pathname: location.pathname, query: _.extend({}, location.query, {page: currentPage+1})}}>
-          <Button bsStyle="default"><Glyphicon glyph="chevron-right" /></Button>
+        <LinkContainer key="next" to={this.link(currentPage+1)}>
+          <Button bsStyle="default">{next}</Button>
+        </LinkContainer>
+      )
+    }
+
+    if (prev && currentPage > 1) {
+      links.unshift(
+        <LinkContainer key="prev" to={this.link(currentPage-1)}>
+          <Button bsStyle="default">{prev}</Button>
         </LinkContainer>
       )
     }
