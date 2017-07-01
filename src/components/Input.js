@@ -133,9 +133,12 @@ export default class Input extends React.Component {
         control = (
           <FormControl componentClass="select" {...inputProps} value={inputProps.value}>
             {this.props.includeEmpty && (<option />)}
-            {_.map(options, option => (
-              <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
+            {_.map(options, opt => {
+              const option = _.isObject(opt) ? opt : {label: opt, value: opt}
+              return (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              )
+            })}
           </FormControl>
         )
         break
