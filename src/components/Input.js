@@ -187,8 +187,9 @@ export default class Input extends React.Component {
       case 'boolean':
         inputProps.checked = !!inputProps.value
         hideLabel = true
-        const oc = e => inputProps.onChange(!e.target.value)
-        const ob = e => inputProps.onBlur(!e.target.value)
+        const oc = e => inputProps.onChange(e.target.value !== 'true')
+        const ob = () => inputProps.onBlur()
+
         control = (
           <Checkbox inline {...bsProps} {...inputProps} onChange={oc} onBlur={ob}>{label}</Checkbox>
         )
