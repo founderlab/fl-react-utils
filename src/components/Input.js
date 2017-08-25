@@ -24,8 +24,12 @@ export default class Input extends React.Component {
 
   static propTypes = {
     label: PropTypes.node,
+    id: PropTypes.string,
+    name: PropTypes.string,
     help: PropTypes.node,
+    helpMd: PropTypes.string,
     defaultHelp: PropTypes.node,
+    defaultHelpMd: PropTypes.string,
     helpTop: PropTypes.bool,
     type: PropTypes.string,
     bsProps: PropTypes.object,
@@ -183,8 +187,10 @@ export default class Input extends React.Component {
       case 'boolean':
         inputProps.checked = !!inputProps.value
         hideLabel = true
+        const oc = e => inputProps.onChange(!e.target.value)
+        const ob = e => inputProps.onBlur(!e.target.value)
         control = (
-          <Checkbox inline {...bsProps} {...inputProps}>{label}</Checkbox>
+          <Checkbox inline {...bsProps} {...inputProps} onChange={oc} onBlur={ob}>{label}</Checkbox>
         )
         break
 
