@@ -31,7 +31,6 @@
   },
   "// wouldBePeerDependencies": {
     "react": "*",
-    "react-quill": "*",
     "react-sidebar": "*",
     "react-bootstrap": "*",
     "react-router-bootstrap": "*",

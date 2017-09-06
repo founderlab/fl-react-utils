@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import warning from 'warning'
 import ReactDatetime from 'react-datetime'
 import Inflection from 'inflection'
-import ReactQuill from 'react-quill'
 import Select from 'react-select'
 import {FormGroup, Checkbox, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
@@ -44,8 +43,6 @@ export default class Input extends React.Component {
     value: PropTypes.any,
     includeEmpty: PropTypes.bool,
     onBlur: PropTypes.func,
-    quillTheme: PropTypes.string,
-    quillFormat: PropTypes.array,
     validationState: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.bool,
@@ -60,19 +57,6 @@ export default class Input extends React.Component {
     localeDateFormat: 'L',
     feedback: false,
     type: 'text',
-    quillTheme: 'snow',
-    quillFormat: [
-      'bold',
-      'italic',
-      'strike',
-      'underline',
-      'font',
-      'size',
-      'bullet',
-      'list',
-      'link',
-      'align',
-    ],
     markdownProps: {
       escapeHtml: true,
     },
@@ -101,12 +85,6 @@ export default class Input extends React.Component {
     let control
 
     switch (type) {
-      case 'rich':
-      case 'rich-text':
-      case 'quill':
-        control = (<ReactQuill theme={this.props.quillTheme} format={this.props.quillFormat} {...inputProps} />)
-        break
-
       case 'date':
       case 'datetime':
       case 'time':
@@ -195,6 +173,14 @@ export default class Input extends React.Component {
         )
         break
 
+      case 'rich':
+      case 'rich-text':
+      case 'quill':
+        warning(false, 'Rich text editor (quill) has been removed from fl-react-utils/Input. Textarea will be used instead.')
+        control = (
+          <FormControl componentClass="textarea" {...bsProps} {...inputProps} />
+        )
+        break
       case 'textarea':
         control = (
           <FormControl componentClass="textarea" {...bsProps} {...inputProps} />

@@ -1,6 +1,5 @@
 # Boilerplate and helper functions for react/redux that can be shared amongst FounderLab apps
 
-
 Sidebar
 -------
 Wrapper for react-sidebar with some useful defaults.
