@@ -137,9 +137,16 @@ export default class Input extends React.Component {
         const funcs = {}
         if (onChange) funcs.onChange = value => onChange(inputProps.multi ? ensureArray(value) : value)
         if (onBlur) funcs.onBlur = () => onBlur(inputProps.multi ? ensureArray(value) : value)
-
+        if (onBlur) {
+          funcs.onBlur = () => {
+            // Temp hacks until next version of react-select where we can enable onBlurResetsInput={false}
+            this._select.setValue(value, false)
+            onBlur(inputProps.multi ? ensureArray(value) : value)
+          }
+        }
         control = (
           <Select
+            ref={c => this._select = c}
             options={options}
             value={stringValue}
             {...funcs}
