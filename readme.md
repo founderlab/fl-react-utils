@@ -1,3 +1,13 @@
+## This package has moved to the [Frameworkstein repository](https://github.com/founderlab/frameworkstein/tree/master/packages/fl-react-utils)
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 # Boilerplate and helper functions for react/redux that can be shared amongst FounderLab apps
 
 Sidebar
